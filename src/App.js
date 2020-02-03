@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import socketIOClient from 'socket.io-client'
+import Button from '@material-ui/core/Button';
 
 function App() {
   const [endpoint, setEndpoint] = useState("localhost:4200");
@@ -21,8 +22,9 @@ function App() {
   return (
     <div style={{ textAlign: "center" }}>
         <button onClick={() => send() }>Change Color</button>
-
-
+        <Button variant="contained" color="primary">
+          Olá Mundo
+        </Button>
 
         <button id="blue" onClick={() => setColor('blue')}>Blue</button>
         <button id="red" onClick={() => setColor('red')}>Red</button>
