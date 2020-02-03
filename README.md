@@ -15,6 +15,8 @@ No lado direito ter todos usuários online, clickando no usuário irá aparecer 
 - [ ] Adicionar express session para guardar a sessão dos usurios
 - [ ] Criar user repository * guardar em memória
 - [ ] Criar messages repository * guardar em memória
+- [ ] Evento de usuário online e offline
+- [ ] Enviar e receber mensagens no websocket
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
