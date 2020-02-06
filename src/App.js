@@ -1,33 +1,28 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import socketIOClient from 'socket.io-client'
+import io from "socket.io-client";
 import Button from '@material-ui/core/Button';
 
+
+
+const socket = io('http://localhost:4200')
+socket.on('connect', () => console.log('[IO] Connect => A new connection has been established'))
+
 function App() {
-  const [endpoint, setEndpoint] = useState("localhost:4200");
   const [color, setColor] = useState("white");
-  const socket = socketIOClient(endpoint);
-  var send = () => {
-    const socket = socketIOClient(endpoint);
-    socket.emit('change color', color) // change 'red' to this.state.color
+  var send = (color) => {
+    console.log('send')
+    socket.emit('change color', color)
   }
-  var componentDidMount = () => {
-    const socket = socketIOClient(endpoint);
-    setInterval(send(), 1000)
-    socket.on('change color', (col) => {
-        document.body.style.backgroundColor = col
-    })
-}
   return (
     <div style={{ textAlign: "center" }}>
-        <button onClick={() => send() }>Change Color</button>
+        <button onClick={send}>Change Color</button>
         <Button variant="contained" color="primary">
           Olá Mundo
         </Button>
 
-        <button id="blue" onClick={() => setColor('blue')}>Blue</button>
-        <button id="red" onClick={() => setColor('red')}>Red</button>
+        <button id="blue" onClick={() => send('blue')}>Blue</button>
+        <button id="red" onClick={() => send('red')}>Red</button>
 
       </div>
   );
