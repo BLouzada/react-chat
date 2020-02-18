@@ -4,12 +4,12 @@ https://app.moqups.com/GOWNaLMdGL/view/page/ad64222d5
 No lado direito ter todos usuários online, clickando no usuário irá aparecer a conversa na tela inicial
 
 ## Material Design
-- [ ] Adicionar material design para facilitar o desenho da tela
+- [X] Adicionar material design para facilitar o desenho da tela
 
 ## Front end
-- [ ] Fazer uma página inicial onde preenche o nome e é direionado pra tela de chat
-- [ ] Criar lista de usuários online quando um usuário ficar online ou offline atualizar a lista
+- [X] Criar lista de usuários online quando um usuário ficar online ou offline atualizar a lista
 - [ ] Criar tela de chat que possibilita enviar e receber mensagem
+- [ ] Fazer uma página inicial onde preenche o nome e é direionado pra tela de chat
 
 ## Backend
 - [ ] Adicionar express session para guardar a sessão dos usurios
