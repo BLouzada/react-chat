@@ -1,13 +1,9 @@
-import React, { useState, useEffect }  from 'react';
+import React, { useContext } from 'react';
+import SocketContext from './socket_context/context'
 
 function UserList(props) {    
-    const [userList, setUserList] = useState([]);
-    useEffect(() => {
-        props.socket.on('user.online', payload => {
-            var newList = userList.concat([payload])
-            setUserList(newList);
-        });
-    }, [userList, props.socket]);
+    const {userList} = useContext(SocketContext);
+    console.log('userList', userList)
     return (
         <ol>
           {userList.map((user, index) =>(                

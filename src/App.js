@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
-import io from "socket.io-client";
 
-import UserList from'./UserList';
+import UserList from './UserList';
 import MessageConsole from './MessageConsole'
-const socket = io('http://localhost:4200')
-socket.on('connect', () => console.log('[IO] Connect => A new connection has been established'))
+import SocketProvider from "./socket_context";
 
 function App() {
   return (
-    <div style={{ textAlign: "center" }}>
-      <MessageConsole socket={socket}></MessageConsole>
-      <UserList socket={socket}></UserList>
-    </div>
+    <SocketProvider>
+      <div style={{ textAlign: "center" }}>
+        <MessageConsole></MessageConsole>
+        <UserList></UserList>
+      </div>
+    </SocketProvider>
   );
 }
 
