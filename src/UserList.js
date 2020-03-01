@@ -5,13 +5,18 @@ function UserList(props) {
     const {userList} = useContext(SocketContext);
     console.log('userList', userList)
     return (
-        <ol>
-          {userList.map((user, index) =>(                
-              <li key={index}> 
-                  {user.id} 
-              </li>                   
-       ))}
-      </ol>  
+        <div>
+            <h1>Clients connected:</h1>
+            <ol>
+            {
+                userList.map((user, index) =>(                
+                <li key={index}> 
+                    {user} 
+                </li>                   
+                ))
+            }
+            </ol>  
+        </div>
     );
 }
 

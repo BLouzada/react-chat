@@ -1,5 +1,6 @@
 import { createContext } from "react";
 const SocketContext = createContext({
-    userList: []
+    userList: [],
+    messages: []
 });
 export default SocketContext;

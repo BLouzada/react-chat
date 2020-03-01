@@ -5,7 +5,8 @@ import { initSockets } from "../sockets";
 const SocketProvider = (props) => {
   
   const [value, setValue] = useState({
-    userList: []
+    userList: [],
+    messages: []
   });
   
   useEffect(() => initSockets({ setValue }), []);

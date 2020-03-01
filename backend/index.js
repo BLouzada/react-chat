@@ -3,12 +3,29 @@ var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 
+var allClients = []
+
+
 io.on('connection', function (client) {
     console.log('Client online...');
-    io.emit('user.online', { id: client.id });
+    
+    allClients.push(client.id);
+
+    io.emit('user.online', { id: client.id, clients: allClients });
+   
     client.on('disconnect', function () {
         console.log('Client offline...');
-        io.emit('user.ofline', { id: client.id });
+        let indexOf = allClients.indexOf(client.id);
+        allClients.splice(indexOf, 1)
+        io.emit('user.offline', { id: client.id });
+    });
+   
+    client.on('send.message', function (data) {
+        console.log('Client', client.id ,'sent message', data);
+        io.emit('message.from.user', {
+            userId: client.id,
+            message: data
+        })
     });
 })
 
