@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import SocketContext from './socket_context/context'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -13,10 +14,11 @@ const useStyles = makeStyles(theme => ({
   }));
 
 function MessageConsole(props) {
+  const {changeColor} = useContext(SocketContext);
     function send (event) {
         event.preventDefault()
         console.log('submeteu')
-        props.socket.emit('change color', 'color')
+        changeColor('newColor')
       }
     const classes = useStyles();
     return (
