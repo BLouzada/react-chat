@@ -1,5 +1,6 @@
-import { createContext } from "react"; 
-const SocketContext = createContext({  
-    userList: []
-}); 
+import { createContext } from "react";
+const SocketContext = createContext({
+    userList: [],
+    messages: []
+});
 export default SocketContext;
