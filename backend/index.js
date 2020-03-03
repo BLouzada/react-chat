@@ -33,11 +33,13 @@ io.on('connection', function(client) {
         allClients.splice(indexOf, 1)
       client.emit('user.logoff');
       io.emit('user.offline', {loggedUsers: loggedUsers});
-     
+    })
+    
      client.on('send.message', function (data) {
+        var user = findLoggedUserById(client.id)
         console.log('Client', client.id ,'sent message', data);
         io.emit('message.from.user', {
-            userId: client.id,
+            senderName: user.name,
             message: data
         })
     });

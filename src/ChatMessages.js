@@ -15,7 +15,7 @@ function UserList(props) {
           { 
               messages.map((message, index) =>(                
                 <span key={index}> 
-                    {message.userId}: {message.message} 
+                    {message.senderName}: {message.message} 
                     <br></br>
                 </span>
               ))

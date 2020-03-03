@@ -18,6 +18,7 @@ function App() {
       {!isCurrentUserOnline && <Login></Login>}
       {isCurrentUserOnline &&
         <div>
+          <ChatMessages></ChatMessages>
           <MessageConsole socket={socket}></MessageConsole>
           <UserList></UserList>
         </div>

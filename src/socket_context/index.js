@@ -6,6 +6,7 @@ const SocketProvider = (props) => {
   
   const [value, setValue] = useState({
     userList: [],
+    messages: [],
     isCurrentUserOnline: false,
     changeColor: props => { changeColor(props) },
     setNewUserRegister: props => { registerUser(props) },
@@ -18,3 +19,4 @@ const SocketProvider = (props) => {
     </SocketContext.Provider>
   )
 }; 
+export default SocketProvider; 
