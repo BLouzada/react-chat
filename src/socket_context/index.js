@@ -3,6 +3,7 @@ import SocketContext from "./context";
 import { initSockets, changeColor, registerUser } from "../sockets";
 
 const SocketProvider = (props) => {
+  
   const [value, setValue] = useState({
     userList: [],
     isCurrentUserOnline: false,
@@ -16,4 +17,4 @@ const SocketProvider = (props) => {
       {props.children}
     </SocketContext.Provider>
   )
-}; export default SocketProvider;
+}; 

@@ -22,6 +22,14 @@ export const socketEvents = ({ setValue }) => {
     socket.on('user.logoff', () => {
         setValue(state => {
             return { ...state, isCurrentUserOnline: false } 
+            var newUserList = payload.clients;
+            return { ...state, userList: newUserList } 
+        });
+    });
+
+    socket.on('message.from.user', (payload) => {
+        setValue(state => {
+            return { ...state, messages:  state.messages.concat([payload]) } 
         });
     });
 };

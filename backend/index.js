@@ -3,10 +3,11 @@ var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 var loggedUsers = []
+var allClients = []
 
 io.on('connection', function(client) {
     console.log('Socket client connected');
-    
+    allClients.push(client.id);
     client.on('registerNewUser', function(userName) {
       console.log("New login: " + userName);
       var user = {
@@ -28,9 +29,19 @@ io.on('connection', function(client) {
       if (!userToDisconnect) return
       console.log("New logoff: " + userToDisconnect.name)
       loggedUsers.splice(loggedUsers.indexOf(userToDisconnect), 1)
+      let indexOf = allClients.indexOf(client.id);
+        allClients.splice(indexOf, 1)
       client.emit('user.logoff');
       io.emit('user.offline', {loggedUsers: loggedUsers});
+     
+     client.on('send.message', function (data) {
+        console.log('Client', client.id ,'sent message', data);
+        io.emit('message.from.user', {
+            userId: client.id,
+            message: data
+        })
     });
+    
 })
 
 function findLoggedUserById(id) {
@@ -38,7 +49,7 @@ function findLoggedUserById(id) {
 }
 
 app.use(express.static("../build/"));
-app.get('/', function(req, res,next) {
+app.get('/', function (req, res, next) {
     res.sendFile(__dirname + '/index.html');
 });
 
