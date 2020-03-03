@@ -1,6 +1,8 @@
-import { createContext } from "react";
+import { createContext } from "react"; 
 const SocketContext = createContext({
+    changeColor: (newColor) => {},
+    setNewUserRegister: (userName) => {},
     userList: [],
-    messages: []
-});
+    isCurrentUserOnline: false
+}); 
 export default SocketContext;

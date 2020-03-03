@@ -10,4 +10,8 @@ export const getQueueLength = () => {
 
 export const removeUserFromQueue = () => {
     socket.emit('removeUserFromQueue');
+}; export const changeColorToServer = (payload) => {
+    socket.emit('changeColor', payload)
+}; export const registerNewUser = (payload) => {
+    socket.emit('registerNewUser', payload)
 };

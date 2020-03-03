@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, {useContext} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import SocketContext from './socket_context/context'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -14,7 +15,6 @@ const useStyles = makeStyles(theme => ({
 
 
 function MessageConsole(props) {
-
   const message = useFormInput("")
 
   function send(event) {
