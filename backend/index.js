@@ -2,6 +2,8 @@ var express = require('express');
 var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
+const path = require('path');
+
 var loggedUsers = []
 var allClients = []
 
@@ -34,7 +36,7 @@ io.on('connection', function(client) {
       client.emit('user.logoff');
       io.emit('user.offline', {loggedUsers: loggedUsers});
     })
-    
+
      client.on('send.message', function (data) {
         var user = findLoggedUserById(client.id)
         console.log('Client', client.id ,'sent message', data);
@@ -43,16 +45,18 @@ io.on('connection', function(client) {
             message: data
         })
     });
-    
+
 })
 
 function findLoggedUserById(id) {
   return loggedUsers.find(user => user.id === id)
 }
 
-app.use(express.static("../build/"));
-app.get('/', function (req, res, next) {
-    res.sendFile(__dirname + '/index.html');
+app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
+
 
 server.listen(4200)

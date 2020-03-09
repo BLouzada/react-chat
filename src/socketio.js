@@ -1,3 +1,3 @@
 import io from "socket.io-client";
-let socket = io("http://localhost:4200/chat");
+let socket = io();
 export default socket;
